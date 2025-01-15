@@ -1,0 +1,19 @@
+{
+  "name": "cypress-ecommerce-framework",
+  "version": "1.0.0",
+  "description": "Sample Test Framework that tests a dummy ecommerce site using Cypress and Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prudhvidandamudi/cypress-ecommerce-framework.git"
+  },
+  "author": "Prudhvi Dandamudi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prudhvidandamudi/cypress-ecommerce-framework/issues"
+  },
+  "homepage": "https://github.com/prudhvidandamudi/cypress-ecommerce-framework#readme"
+}
