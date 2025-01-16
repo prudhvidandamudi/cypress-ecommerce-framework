@@ -4,7 +4,18 @@
   "description": "Sample Test Framework that tests a dummy ecommerce site using Cypress and Typescript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"cypress/**/*.ts\" \"cypress/**/*.cy.ts\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "cypress/**/*.ts": [
+      "prettier --write",
+      "eslint --max-warnings=5"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   },
   "repository": {
     "type": "git",
@@ -15,5 +26,20 @@
   "bugs": {
     "url": "https://github.com/prudhvidandamudi/cypress-ecommerce-framework/issues"
   },
-  "homepage": "https://github.com/prudhvidandamudi/cypress-ecommerce-framework#readme"
+  "homepage": "https://github.com/prudhvidandamudi/cypress-ecommerce-framework#readme",
+  "devDependencies": {
+    "@types/cypress": "^0.1.6",
+    "@types/node": "^22.10.6",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "cypress": "^13.17.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-cypress": "^4.1.0",
+    "eslint-plugin-prettier": "^5.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  }
 }
