@@ -1,0 +1,20 @@
+{
+  // Use Prettier as the default formatter
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Format files automatically on save
+  "editor.formatOnSave": true,
+
+  // Run ESLint fixes on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // TypeScript-specific settings
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Require a Prettier config file to be present
+  "prettier.requireConfig": true
+}
