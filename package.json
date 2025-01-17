@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/prudhvidandamudi/cypress-ecommerce-framework#readme",
   "devDependencies": {
+    "@faker-js/faker": "^9.4.0",
     "@types/cypress": "^0.1.6",
     "@types/node": "^22.10.6",
     "@typescript-eslint/eslint-plugin": "^8.20.0",
