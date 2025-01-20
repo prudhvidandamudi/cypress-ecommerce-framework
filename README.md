@@ -16,23 +16,132 @@ A comprehensive end-to-end testing framework built with Cypress and TypeScript f
 
 ## 🛠 Setup
 
-1. **Prerequisites**
+### Prerequisites
 
-   - Node.js (Latest LTS version)
-   - Git
+- Node.js (Latest LTS version)
+- Git
+- VS Code (Recommended)
 
-2. **Installation**
+### Installation
 
-   ```bash
-   # Clone the repository
-   git clone https://github.com/prudhvidandamudi/cypress-ecommerce-framework.git
+```bash
+# Clone the repository
+git clone https://github.com/prudhvidandamudi/cypress-ecommerce-framework.git
 
-   # Navigate to project directory
-   cd cypress-ecommerce-framework
+# Navigate to project directory
+cd cypress-ecommerce-framework
 
-   # Install dependencies
-   npm install
-   ```
+# Install dependencies
+npm install
+```
+
+## 🧹 Development Setup & Code Quality
+
+### VS Code Extensions
+
+Install the following VS Code extensions for the best development experience:
+
+- ESLint
+- Prettier - Code formatter
+- TypeScript + JavaScript
+- Cypress Snippets
+
+### Code Formatting
+
+The project uses Prettier with the following configuration (.prettierrc):
+
+```json
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "printWidth": 80,
+  "trailingComma": "es5",
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+  "useTabs": false,
+  "quoteProps": "as-needed"
+}
+```
+
+### ESLint Configuration
+
+ESLint is configured to work with TypeScript and Cypress, key features include:
+
+- TypeScript parsing and linting
+- Cypress-specific rules
+- Prettier integration
+
+```javascript
+// .eslintrc.mjs
+export default [
+  pluginCypress.configs.recommended,
+  {
+    files: ['**/*.ts'],
+    plugins: {
+      '@typescript-eslint': pluginTypescript,
+      cypress: pluginCypress,
+      prettier: pluginPrettier,
+    },
+    rules: {
+      'prettier/prettier': 'error',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'prefer-const': 'error',
+      'no-console': 'warn',
+    },
+  },
+];
+```
+
+### VS Code Settings
+
+For consistent formatting, add these to your VS Code settings.json:
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+```
+
+### Git Hooks with Husky
+
+The project uses Husky for Git hooks to ensure code quality:
+
+1. **Pre-commit Hook**: Runs ESLint and Prettier
+
+```bash
+# Install Husky
+npm install husky --save-dev
+
+# Initialize Husky
+npm run prepare
+
+# Add pre-commit hook for lint-staged
+npx husky add .husky/pre-commit "npx lint-staged"
+```
+
+Lint-staged configuration in package.json:
+
+```json
+"lint-staged": {
+  "cypress/**/*.ts": [
+    "prettier --write",
+    "eslint --max-warnings=5"
+  ],
+  "*.{json,md}": [
+    "prettier --write"
+  ]
+}
+```
 
 ## 🚀 Running Tests
 
@@ -115,7 +224,7 @@ class BasePage {
 }
 ```
 
-2. **Page Object Pattern**
+4. **Page Object Pattern**
 
 ```typescript
 class LoginPage {
@@ -128,43 +237,6 @@ class LoginPage {
     cy.getDataQa(this.elements.emailInput).type(email);
     cy.getDataQa(this.elements.passwordInput).type(password);
     return new BasePage();
-  }
-}
-```
-
-3. **Test Structure**
-
-```typescript
-describe('User Login Logout Test', () => {
-  let basePage: BasePage;
-  let userData: UserData;
-
-  beforeEach(() => {
-    basePage = new BasePage();
-    userData = DataFactory.generateUserData();
-    cy.createUserViaApi(userData);
-  });
-
-  it('User should be able to login successfully!', () => {
-    basePage
-      .visitLoginPage()
-      .login(userData.email, userData.password)
-      .validateHomePageTitle();
-  });
-});
-```
-
-4. **Data Generation Using Factory Pattern**
-
-```typescript
-class DataFactory {
-  static generateUserData(): UserData {
-    return {
-      name: faker.person.firstName(),
-      email: faker.internet.email(),
-      password: faker.internet.password(),
-      // ... other properties
-    };
   }
 }
 ```
@@ -237,13 +309,6 @@ The framework uses Mochawesome for comprehensive test reporting:
 npm run test
 # Find the HTML report in cypress/reports/html/index.html
 ```
-
-## 🧹 Code Quality Tools
-
-- ESLint and Prettier for code formatting
-- Husky pre-commit hooks for code quality
-- TypeScript for type safety
-- Custom commands for reusable operations
 
 ---
 
