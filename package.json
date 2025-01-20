@@ -11,7 +11,9 @@
     "merge-reports": "mochawesome-merge cypress/reports/*.json > cypress/reports/output.json",
     "generate-html-report": "marge cypress/reports/output.json --reportDir cypress/reports/html",
     "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
     "test": "npm run clean:all && npm run cy:run",
+    "test:chrome": "npm run clean:all && npm run cy:run:chrome",
     "posttest": "npm run merge-reports && npm run generate-html-report",
     "lint": "eslint \"cypress/**/*.ts\" \"cypress/**/*.cy.ts\"",
     "prepare": "husky"
