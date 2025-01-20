@@ -1,6 +1,6 @@
 # Cypress E-Commerce Test Framework
 
-A comprehensive end-to-end testing framework built with Cypress and TypeScript for testing an e-commerce application. The framework implements the Page Object Model (POM) pattern, utilizes data factories for test data generation, and supports both UI and API testing.
+An end-to-end testing framework built with Cypress and TypeScript for testing an e-commerce application. The framework implements the Page Object Model (POM) pattern, utilizes data factories for test data generation, and supports both UI and API testing.
 
 ## 🌟 Features
 
