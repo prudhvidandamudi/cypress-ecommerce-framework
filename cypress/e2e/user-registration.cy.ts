@@ -17,6 +17,6 @@ describe('Form Registration Test', () => {
       .fillRegisterForm(userData);
 
     // Deleting the account
-    basePage.logout().validateLoginPageMessage();
+    basePage.deleteUserAccount().validateAccountDeleted();
   });
 });

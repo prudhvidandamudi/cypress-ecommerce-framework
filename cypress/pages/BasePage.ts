@@ -1,22 +1,49 @@
+import ContactUsPage from './ContactUsPage';
 import LoginPage from './LoginPage';
 
 class BasePage {
-  private readonly signupLogin: string;
-  private readonly logoutButton: string;
+  private readonly signupLoginLink: string;
+  private readonly logoutLink: string;
+  private readonly deleteAccountLink: string;
+  private readonly contactUsLink: string;
+  private readonly accountDeletedMessage: string;
+  private readonly homePageTitle: string;
 
   constructor() {
-    this.signupLogin = 'Signup / Login';
-    this.logoutButton = 'Logout';
+    this.signupLoginLink = 'Signup / Login';
+    this.logoutLink = 'Logout';
+    this.deleteAccountLink = 'Delete Account';
+    this.contactUsLink = 'Contact us';
+    this.accountDeletedMessage = 'Account Deleted!';
+    this.homePageTitle = 'Automation Exercise';
   }
 
   visitLoginPage() {
-    cy.visit('/').contains('a', this.signupLogin).click();
+    cy.visit('/').contains('a', this.signupLoginLink).click();
     return new LoginPage();
   }
 
-  logout() {
-    cy.contains('a', this.logoutButton).click();
+  visitLogout() {
+    cy.visit('/').contains('a', this.logoutLink).click();
     return new LoginPage();
+  }
+
+  visitContactUs() {
+    cy.visit('/').contains('a', this.contactUsLink).click();
+    return new ContactUsPage();
+  }
+
+  validateAccountDeleted() {
+    cy.contains(this.accountDeletedMessage);
+  }
+
+  validateHomePageTitle() {
+    cy.title().should('eq', this.homePageTitle);
+  }
+
+  deleteUserAccount() {
+    cy.contains('a', this.deleteAccountLink).click();
+    return this;
   }
 }
 

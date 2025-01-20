@@ -1,4 +1,5 @@
 import { UserData } from '../types';
+import BasePage from './BasePage';
 import RegisterFormPage from './RegisterFormPage';
 
 class LoginPage {
@@ -22,7 +23,7 @@ class LoginPage {
   }
 
   visit() {
-    cy.visit('/login');
+    cy.visit(Cypress.env('login'));
     return this;
   }
 
@@ -58,6 +59,7 @@ class LoginPage {
 
   public login(email: string, password: string) {
     this.fillLoginEmail(email).fillPassword(password).clickLoginButton();
+    return new BasePage();
   }
 
   public validateLoginPageMessage() {
