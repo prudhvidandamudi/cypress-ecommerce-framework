@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { UserData } from '../../types';
+import { ContactData } from '../../types/contact.types';
 
 class DataFactory {
   static generateUserData(): UserData {
@@ -35,6 +36,22 @@ class DataFactory {
     return {
       ...this.generateUserData(),
       ...overrides,
+    };
+  }
+
+  static generateFileData() {
+    return {
+      fileName: `test-file-${faker.string.uuid()}.txt`,
+      fileContent: faker.lorem.paragraphs(2),
+    };
+  }
+
+  static generateContactFormData(): ContactData {
+    return {
+      name: faker.person.firstName(),
+      email: faker.internet.email(),
+      subject: faker.lorem.paragraph(),
+      message: faker.lorem.sentence(),
     };
   }
 }
